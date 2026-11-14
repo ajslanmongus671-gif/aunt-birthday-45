@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-сюда-можно-вставить-любой-набор-букв-и-цифр')
 
 # ВРЕМЕННО ВКЛЮЧАЕМ DEBUG, чтобы увидеть точную причину ошибки 500
-DEBUG = False
+DEBUG = True
 
 # Разрешаем доступ с любого адреса
 ALLOWED_HOSTS = ['*']
