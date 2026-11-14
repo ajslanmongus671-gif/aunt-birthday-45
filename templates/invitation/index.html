@@ -1,0 +1,179 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Приглашение на 45-летие</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Подключаем рукописный шрифт Great Vibes и классические шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,400&family=Lora:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <!-- Кнопка музыки с подписью -->
+    <div class="music-player">
+        <button id="musicBtn" class="music-btn" title="Управление музыкой">
+            <svg id="musicIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+        </button>
+        <!-- Текст-подсказка под кнопкой -->
+        <span id="musicText" class="music-text">Нажмите, чтобы включить музыку</span>
+        
+        <audio id="bgMusic" loop>
+            <source src="{% static 'audio/birthday_song.mp3' %}" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- БЛОК 1: Обложка -->
+    <section class="hero-section">
+        <div class="hero-image-container fade-in">
+            <img src="{% static 'images/aunt_wings.jpg' %}" alt="Именинница" class="hero-image">
+        </div>
+        <div class="hero-text fade-in">
+            <p class="subtitle">45 ЛЕТ</p>
+            <h1 class="main-title">С Днём Рождения!</h1>
+            
+            <div class="scroll-arrow" onclick="scrollToNext()">
+                <span>Листайте вниз</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК 2: Приглашение -->
+    <section class="section text-section">
+        <div class="container fade-in">
+            <h2 class="section-title">Приглашение</h2>
+            <div class="poem">
+                <p>Авам мени чырык черге чаяагандан,<br>
+                Айлар, чылдар,санныг хүннер эрткенден бээр<br>
+                Ава болгаш ажыл-иштиг башкы болуп<br>
+                Амыдырап, 45 хар чеде бердим !</p>
+                
+                <p>Дөргүл-төрел, эжим-өөрүм чыглып алгаш<br>
+                45 хар дөвүнчүүнүң шайын ижип,<br>
+                Онза чараш байырлалга ойнап-хөглеп,<br>
+                Озалдавайн кээриңерни чалап тур мен!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК 3: Календарь и Таймер -->
+    <section class="section calendar-section">
+        <div class="container fade-in">
+            <h2 class="section-title">День Х</h2>
+            <p class="calendar-subtitle">Декабрь 2026</p>
+            
+            <div class="calendar-box">
+                <div class="calendar-grid">
+                    <span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span>
+                    
+                    <!-- Ноябрь 2026 -->
+                    <span class="empty"></span><span class="empty"></span><span class="empty"></span><span class="empty"></span><span class="empty"></span><span class="empty"></span><span class="empty"></span>
+                    <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span>
+                    <span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+                    <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span>
+                    <span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span>
+                    <span>29</span><span>30</span>
+                    <!-- Декабрь 2026 -->
+                    <span>1</span><span>2</span><span>3</span><span>4</span>
+                    <span class="highlight">5</span><span>6</span><span>7</span>
+                    <span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span>
+                    <span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span>
+                    <span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span>
+                    <span>29</span><span>30</span><span>31</span><span class="empty"></span><span class="empty"></span><span class="empty"></span><span class="empty"></span>
+                </div>
+            </div>
+
+            <!-- Таймер -->
+            <div class="countdown-container">
+                <p class="countdown-title">До праздника осталось:</p>
+                <div class="countdown" id="countdown">
+                    <div class="time-box"><span id="days">00</span><p>дней</p></div>
+                    <div class="time-box"><span id="hours">00</span><p>часов</p></div>
+                    <div class="time-box"><span id="minutes">00</span><p>минут</p></div>
+                    <div class="time-box"><span id="seconds">00</span><p>секунд</p></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- БЛОК 4: Слайдер с фотографиями тёти -->
+    <section class="section gallery-section">
+        <div class="container fade-in">
+            <h2 class="section-title">Мои любимые моменты</h2>
+            <div class="slider-container">
+                <div class="slider" id="slider-aunt">
+                    <div class="slide"><img src="{% static 'images/aunt_gifts.jpg' %}" alt="Фото 1"></div>
+                    <div class="slide"><img src="{% static 'images/aunt_buddha.jpg' %}" alt="Фото 2"></div>
+                    <div class="slide"><img src="{% static 'images/aunt_swing_summer.jpg' %}" alt="Фото 3"></div>
+                    <div class="slide"><img src="{% static 'images/aunt_swing_winter.jpg' %}" alt="Фото 4"></div>
+                </div>
+                <button class="slider-btn prev" onclick="moveSlideAunt(-1)">&#10094;</button>
+                <button class="slider-btn next" onclick="moveSlideAunt(1)">&#10095;</button>
+            </div>
+            <div class="slider-dots" id="dots-aunt"></div>
+        </div>
+    </section>
+
+    <!-- БЛОК 5: Фотографии места проведения -->
+    <section class="section place-section">
+        <div class="container fade-in">
+            <h2 class="section-title">Место проведения</h2>
+            <div class="slider-container">
+                <div class="slider" id="slider-place">
+                    <div class="slide"><img src="{% static 'images/place_entrance.jpg' %}" alt="Вход"></div>
+                    <div class="slide"><img src="{% static 'images/place_zone_photo.jpg' %}" alt="Фотозона"></div>
+                    <div class="slide"><img src="{% static 'images/place_hall_1.jpg' %}" alt="Зал 1"></div>
+                    <div class="slide"><img src="{% static 'images/place_hall_2.jpg' %}" alt="Зал 2"></div>
+                    <div class="slide"><img src="{% static 'images/place_hall_3.jpg' %}" alt="Зал 3"></div>
+                    <div class="slide"><img src="{% static 'images/place_hall_4.jpg' %}" alt="Зал 4"></div>
+                </div>
+                <button class="slider-btn prev" onclick="moveSlidePlace(-1)">&#10094;</button>
+                <button class="slider-btn next" onclick="moveSlidePlace(1)">&#10095;</button>
+            </div>
+            <div class="slider-dots" id="dots-place"></div>
+        </div>
+    </section>
+
+    <!-- БЛОК 6: Детали -->
+    <section class="section details-section">
+        <div class="container fade-in">
+            <h2 class="section-title">Детали праздника</h2>
+            <div class="details-cards">
+                <div class="card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    <h4>Сбор гостей</h4>
+                    <p>5 декабря, 17:00</p>
+                </div>
+                <div class="card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    <h4>Место</h4>
+                    <p>Кафе "Мираж"<br>Ул. Данзырыка Калдар-оола, 62</p>
+                </div>
+                <div class="card">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.38 3.46L16 2a4 4 0 01-8 0L3.62 3.46a2 2 0 00-1.34 2.23l.58 3.47a1 1 0 00.99.84H6v10a1 1 0 001 1h10a1 1 0 001-1V10h2.15a1 1 0 00.99-.84l.58-3.47a2 2 0 00-1.34-2.23z"></path></svg>
+                    <h4>Дресс-код</h4>
+                    <p>Черный</p>
+                </div>
+            </div>
+
+            <div class="location-link-container">
+                <a href="https://2gis.ru/search/Улица Данзырыка Калдар-оола, 62, Ак-Довурак" target="_blank" class="location-link">
+                    <div class="social-icon black-circle">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    </div>
+                    <span class="location-text">Открыть в 2ГИС</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
